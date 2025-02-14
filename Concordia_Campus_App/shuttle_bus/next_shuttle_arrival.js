@@ -87,7 +87,7 @@ const ArrivalDisplay = ({ stop }) => {
                         </View>
 
                         <View>
-                            <Text style={{ fontSize: 15 }}>Arriving In</Text>
+                            <Text style={{ fontSize: 15 }}>Leaving In</Text>
                             <Text style={{ fontSize: 15 }}>{nextBus[1]}</Text>
                         </View>
 
