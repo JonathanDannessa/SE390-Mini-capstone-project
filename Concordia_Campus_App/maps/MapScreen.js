@@ -1,5 +1,3 @@
-
-import { duration } from 'moment-timezone';
 import React, { useState, useRef, useEffect } from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import 'react-native-get-random-values';
@@ -14,6 +12,8 @@ import ShuttleBusMarker from './ShuttleBusMarker';
 import { getLocation } from './locationUtils';
 import MapDirections from './MapDirections';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import TransitScreen from './transitOptions.js';
+import RouteInfoContainer from './RouteInfoContainer.js';
 
 
 const MapScreen = ({route}) => {
@@ -37,7 +37,8 @@ const MapScreen = ({route}) => {
   const [isUserLocationFetched, setIsUserLocationFetched] = useState(false);
   const [activeButton, setActiveButton] = useState('user');
   const [destinationActive, setDestinationActive] = useState(false);
-
+  const [mode, setMode] = useState('DRIVING');
+  
   
   const campusLocations = {
     SGW: {
@@ -117,6 +118,11 @@ const MapScreen = ({route}) => {
     setDistance(result.distance);
   };
 
+  const handleDirectionsToMap = (eta, distance) => {
+    setEta(eta);
+    setDistance(distance);
+  }
+
 
   const handleSelectSGW = () => {
     if (activeButton === 'SGW') {
@@ -190,6 +196,8 @@ const handleUserLocation = () => {
   setSelectedBuilding(null);
   setSelectedMarker(null);
   setActiveButton('user');
+  setEta(null);
+  setDistance(null);
 };
 
   const handleCampusDirections = () =>{
@@ -205,17 +213,10 @@ const handleUserLocation = () => {
     setShowDirections(false);
   }
 
-  useEffect(() => {
-    return () => {
-      setShowDirections(false);
-      setEta(null);
-      setDistance(null);
-    };
-  }, []);
-  
-  useEffect(() => {
+ useEffect(() => {
     return () => {
       setShowBuildingDirections(false);
+      setShowDirections(false);
       setEta(null);
       setDistance(null);
     };
@@ -474,41 +475,29 @@ const handleUserLocation = () => {
           );
         })}
 
+        <TransitScreen showDirections={showDirections} campus={campus} routeData={handleDirectionsToMap}/>
 
-        {showDirections && (
+        
+        {selectedStart && selectedEnd && showBuildingDirections &&(
           <MapViewDirections
-            origin={location}
-            destination={destinationLocation}
+            origin={selectedStart}
+            destination={selectedEnd}
             apikey={API_KEY}
             strokeWidth={5}
             strokeColor="blue"
             onReady={handleDirections}
           />
         )}
-        {selectedStart && selectedEnd && showBuildingDirections &&(
-             <MapViewDirections
-             origin={selectedStart}
-             destination={selectedEnd}
-             apikey={API_KEY}
-             strokeWidth={5}
-             strokeColor="blue"
-             onReady={handleDirections}
-             />
-        )}
-
       </MapView>
+      
       <BuildingPopup
         building={selectedBuilding}
         onClose={handleClosePopup}
         testID="building-popup" 
       />
 
-      {eta !== null && distance !== null && (
-        <View style={[styles.routeInfoContainer, { flexDirection: 'row'}]}>
-          <Text style={styles.routeInfoText}>Distance: {Math.round(distance)} km</Text>
-          <Text style={styles.routeInfoText}>      ETA: {Math.round(eta)} min</Text>
-        </View>
-      )}
+        <RouteInfoContainer eta={eta} distance={distance}/>
+
     </View>
   );
 };

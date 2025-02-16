@@ -9,15 +9,17 @@ jest.mock('react-native-maps-directions', () => {
 
 describe('TransitScreen Component', () => {
   test('renders correctly', () => {
-    const { getByPlaceholderText, getByText } = render(<TransitScreen />);
+    const { getByPlaceholderText, getByText } = render(<TransitScreen showDirections={true} campus={""} routeData={null}/>);
     // Check if directions button renders
-    expect(getByText('Directions to LOY')).toBeTruthy();
+    expect(getByText('Driving')).toBeTruthy();
+    expect(getByText('Walking')).toBeTruthy();
+    expect(getByText('Transit')).toBeTruthy();
   });
 
 test('shows directions when button is pressed', async () => {
-    const { getByText, findByText } = render(<TransitScreen />);
+    const { getByText, findByText } = render(<TransitScreen showDirections={true} campus={"SGW"} routeData={null}/>);
   
-    const directionsButton = getByText('Directions to LOY');
+    const directionsButton = getByText('Driving');
     fireEvent.press(directionsButton);
   
     // Check if MapViewDirections is rendered
@@ -26,9 +28,9 @@ test('shows directions when button is pressed', async () => {
   });
 
   test('sets default mode to driving', async () => {
-    const { getByText, getByTestId } = render(<TransitScreen />);
+    const { getByText, getByTestId } = render(<TransitScreen showDirections={true} campus={"SGW"} routeData={null}/>);
   
-    const directionsButton = getByText('Directions to LOY');
+    const directionsButton = getByText('Driving');
     fireEvent.press(directionsButton);
   
     // Driving button should be highlighted by default
@@ -40,9 +42,9 @@ test('shows directions when button is pressed', async () => {
   });  
 
 test('updates mode when mode buttons are pressed', () => {
-    const { getByText, getByTestId } = render(<TransitScreen />);
+    const { getByText, getByTestId } = render(<TransitScreen showDirections={true} campus={"SGW"} routeData={null}/>);
   
-    const directionsButton = getByText('Directions to LOY');
+    const directionsButton = getByText('Driving');
     fireEvent.press(directionsButton);
   
     const walkingButton = getByTestId('walking-button');

@@ -23,7 +23,6 @@ export default function App() {
         <Drawer.Screen name="Calendar" component={Calendar}/>
         <Drawer.Screen name="Building Map Directions" component={BuildingDirectionsMapScreen}/>
         <Drawer.Screen name="Shuttle Bus Schedule" component={FullShuttleSchedule}/>
-        <Drawer.Screen name="Transit Map" component={TransitScreen}/>
       </Drawer.Navigator>
     </NavigationContainer>
     </PaperProvider>

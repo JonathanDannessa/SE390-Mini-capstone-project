@@ -120,59 +120,6 @@ const styles = StyleSheet.create({
     color: 'blue',
      fontWeight: 'bold'
   },
-
-  directionsButton: {
-    backgroundColor: '#800000',  
-    paddingVertical: 10,          
-    paddingHorizontal: 10,        
-    borderRadius: 50,            
-    alignItems: 'center', 
-    flexDirection: 'row',
-  },
-  directionsButtonText: {
-     color: 'white',
-     fontSize: 16,
-     fontWeight: 'bold'
-  },
-  routeInfoContainer: {
-    position: 'absolute', 
-    bottom: 20, 
-    width: '90%',
-    flexDirection: 'row', 
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#800000',
-    padding: 10,
-    borderRadius: 10,
-  },
-  routeInfoText: {
-    fontSize: 16,
-    fontWeight: 'medium',
-    color: 'white',
-  },
-  buttonImage: {
-    width: 20,
-    height: 20,
-  },
-  modeContainer: { 
-    flexDirection: 'row', 
-    justifyContent: 'space-evenly', 
-    marginVertical: 10 
-  },
-  modeButton: { 
-    marginHorizontal: 15,
-    backgroundColor: '#800000',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modeText: { 
-    fontSize: 16,
-    fontWeight: 'medium',
-    color: 'white',
-  },
   directionsButton: {
     backgroundColor: '#800000',
     borderRadius: 10,
@@ -184,10 +131,59 @@ const styles = StyleSheet.create({
     width: 'auto',
   },
   directionsButtonText: {
-     color: 'white',
+    color: 'white',
      fontSize: 16,
      fontWeight: 'bold'
-  },
+ }, 
+ routeInfoContainer: {
+  position: 'absolute', 
+  bottom: 40, 
+  width: '90%',
+  flexDirection: 'row', 
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  backgroundColor: '#800000',
+  padding: 10,
+  borderRadius: 10,
+},
+routeInfoText: {
+  fontSize: 16,
+  fontWeight: 'medium',
+  color: 'white',
+},
+buttonImage: {
+  width: 20,
+  height: 20,
+},
+modeContainer: {
+  position: 'absolute',
+  bottom: 30, // Places it right above the directions button
+  left: '50%',
+  transform: [{ translateX: -110 }], // Centers the container
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  //backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
+  borderRadius: 20,
+  paddingHorizontal: 10,
+  paddingVertical: 5,
+  width: 220, // Adjust the width of the container
+  marginBottom: 60
+},
+modeButton: { 
+  marginHorizontal: 15,
+  backgroundColor: '#800000',
+  paddingVertical: 10,
+  paddingHorizontal: 20,
+  borderRadius: 20,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+modeText: { 
+  fontSize: 16,
+  fontWeight: 'medium',
+  color: 'white',
+},
   directionsBuildingButton: {
     backgroundColor: '#800000',  
     paddingVertical: 10,          
@@ -200,22 +196,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold'
-  },
-  routeInfoContainer: {
-    backgroundColor: '#800000',
-    padding: 10,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  routeInfoText: {
-    fontSize: 16,
-    fontWeight: 'medium',
-    color: 'white',
-  },
-  buttonImage: {
-    width: 20,
-    height: 20,
-  },
+  }
 });
 
 export default styles;
